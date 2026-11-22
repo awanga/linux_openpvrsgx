@@ -102,6 +102,15 @@ config SGX_SUNXI
 	help
 	  Support for the PowerVR SGX 3D core inside Allwinner A31 or A83T.
 
+config SGX_VITA
+	tristate "PowerVR SGX543MP4+ inside the PlayStation Vita"
+	depends on SGX && (ARCH_VITA || COMPILE_TEST)
+	help
+	  Support for the SGX543MP4+ of the Sony PlayStation Vita SoC.  The GPU
+	  is switched through a secure monitor call; see the system layer in
+	  services4/system/vita.  Experimental: only the GPU's master register
+	  bank is reachable so far.
+
 config SGX_GENERIC
 	tristate "PowerVR SGX generic driver"
 	depends on SGX

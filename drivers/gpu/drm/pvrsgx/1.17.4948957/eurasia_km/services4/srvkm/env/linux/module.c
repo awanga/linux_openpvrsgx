@@ -291,6 +291,7 @@ static struct of_device_id powervr_id_table[] = {
 	{	.compatible = "ti,am3352-sgx530"	},
 	{	.compatible = "ti,omap3-sgx530-121"	},
 	{	.compatible = "ti,omap4-sgx540-120"	},
+	{	.compatible = "sony,vita-sgx543-216"	},
 	{}
 };
 MODULE_DEVICE_TABLE(of, powervr_id_table);

@@ -80,6 +80,10 @@ else ifeq ($(SOC_FAMILY),sunxi)
 $(TARGET) += \
 	services4/system/$(SOC_FAMILY)/sysconfig.o \
 	services4/system/$(SOC_FAMILY)/sysutils_linux.o
+else ifeq ($(SOC_FAMILY),vita)
+$(TARGET) += \
+	services4/system/$(SOC_FAMILY)/sysconfig.o \
+	services4/system/$(SOC_FAMILY)/sysutils_linux.o
 else
 $(TARGET) += \
 	services4/system/$(SOC_FAMILY)/sysconfig.o \
@@ -220,6 +224,13 @@ ccflags-n += -DSYS_OMAP_HAS_DVFS_FRAMEWORK	# sgxfreq extension
 # may be broken...
 ccflags-y += -DAMVERSION=5
 # PVR_OMAPLFB_DRM_FB			:= 0
+endif
+
+# four 543 cores in one cluster, behind a system cache
+ifeq ($(SOC_FAMILY),vita)
+ccflags-y += -DSGX_FEATURE_MP
+ccflags-y += -DSGX_FEATURE_MP_CORE_COUNT=4
+ccflags-y += -DSGX_FEATURE_SYSTEM_CACHE
 endif
 
 ifeq ($(SOC_FAMILY),sgx_jz4780)

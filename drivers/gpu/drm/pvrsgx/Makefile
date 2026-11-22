@@ -153,6 +153,13 @@ ifneq ($(CONFIG_SGX_SUNXI),)
 	$(Q)if [ -r $(SOURCE)/modules.order ]; then cat $(SOURCE)/modules.order >>$(obj)/modules.order; fi
 endif # CONFIG_SGX_SUNXI
 
+ifneq ($(CONFIG_SGX_VITA),)
+	@$(kecho) "  MAKE    $(obj): vita"
+# The ID registers of the console's GPU read core 0x0117, revision 2.1.6 and four cores.
+	$(Q)SOC_VENDOR=sony SOC_FAMILY=vita SOC=vita SGX=sgx543 SGX_FLAG=SGX543 SGX_REV=216 AM_VERSION=0 $(MAKE) TARGET_TYPE=$(CONFIG_SGX_VITA) $(build)=$(SOURCE)
+	$(Q)if [ -r $(SOURCE)/modules.order ]; then cat $(SOURCE)/modules.order >>$(obj)/modules.order; fi
+endif # CONFIG_SGX_VITA
+
 # there is also SOC_FAMILY=sgx_pc_i686_tc3 whatever this is
 #
 # only this should be remaining and be enabled automatically
