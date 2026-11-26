@@ -2685,6 +2685,10 @@ PVRSRV_ERROR SGXDevInitCompatCheck(PVRSRV_DEVICE_NODE *psDeviceNode)
 	IMG_BOOL	bCheckCoreRev;
 	const IMG_UINT32 aui32CoreRevExceptions[] =
 	{
+#if defined(sony_vita_sgx544_116)
+		/* the console's 2.1.6 core run with the 1.1.6 build's firmware */
+		0x20106, 0x10106,
+#endif
 		0x10100, 0x10101
 	};
 	const IMG_UINT32	ui32NumCoreExceptions = sizeof(aui32CoreRevExceptions) / (2*sizeof(IMG_UINT32));
