@@ -312,6 +312,12 @@ static const struct pvr_capabilities __maybe_unused pvr_jz4780 = {
 	.sgx_revision = 130,
 };
 
+static const struct pvr_capabilities __maybe_unused pvr_vita = {
+	.smp = true,
+	.sgx_version = 543,
+	.sgx_revision = 216,
+};
+
 static const struct pvr_capabilities __maybe_unused pvr_s5pv210 = {
 	.smp = true,
 	.sgx_version = 540,
@@ -383,6 +389,10 @@ static const struct of_device_id pvr_ids[] = {
 
 #ifdef samsung_s5pv210_sgx540_120
 	{ .compatible = "samsung,s5pv210-gpu", .data =  &pvr_s5pv210, },
+#endif
+
+#ifdef sony_vita_sgx543_216
+	{ .compatible = "sony,vita-sgx543-216", .data =  &pvr_vita, },
 #endif
 
 #if 0
