@@ -64,6 +64,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * from +0x8000, so four cores end at 0x18000.
  */
 #define SYS_VITA_SGX_REGS_SYS_PHYS_BASE  0xE8400000
+
+/* The GPU addresses memory by the CPU's physical addresses (the page directory
+ * base the console's OS programs is a RAM address, 0x41a3a000), so the device
+ * address is the CPU address. */
+#define SYS_VITA_DEV_PHYS_OFFSET 0x0
 #define SYS_VITA_SGX_REGS_SIZE           0x20000
 #define SYS_VITA_SGX_IRQ                 0	/* not used: platform resource */
 
