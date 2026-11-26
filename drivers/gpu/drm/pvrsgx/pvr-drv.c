@@ -391,7 +391,7 @@ static const struct of_device_id pvr_ids[] = {
 	{ .compatible = "samsung,s5pv210-gpu", .data =  &pvr_s5pv210, },
 #endif
 
-#ifdef sony_vita_sgx543_216
+#if defined(sony_vita_sgx543_216) || defined(sony_vita_sgx544_116)
 	{ .compatible = "sony,vita-sgx543-216", .data =  &pvr_vita, },
 #endif
 
