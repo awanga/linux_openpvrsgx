@@ -54,7 +54,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "syslocal.h"
 
 #include <linux/platform_device.h>
-#include <linux/pm_runtime.h>
 #include <linux/types.h>
 
 /*
@@ -249,17 +248,16 @@ IMG_VOID DisableSystemClocks(SYS_DATA *psSysData)
 	PVR_UNREFERENCED_PARAMETER(psSysData);
 }
 
+/* The platform glue enables and disables runtime PM for the device, and it
+ * powers nothing here (the secure call does), so these have nothing to add.
+ * Enabling it a second time only draws "Unbalanced pm_runtime_enable!". */
 PVRSRV_ERROR SysPMRuntimeRegister(void)
 {
-	pm_runtime_enable(&gpsPVRLDMDev->dev);
-
 	return PVRSRV_OK;
 }
 
 PVRSRV_ERROR SysPMRuntimeUnregister(void)
 {
-	pm_runtime_disable(&gpsPVRLDMDev->dev);
-
 	return PVRSRV_OK;
 }
 
