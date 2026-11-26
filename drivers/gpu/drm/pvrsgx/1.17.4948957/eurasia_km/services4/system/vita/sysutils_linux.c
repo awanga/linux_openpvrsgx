@@ -277,3 +277,13 @@ PVRSRV_ERROR SysDvfsDeinitialize(SYS_SPECIFIC_DATA *psSysSpecificData)
 	return PVRSRV_OK;
 }
 
+
+/* No per-power-state policy: the secure-call power switch is all there is. */
+IMG_VOID SysSGXIdleEntered(IMG_VOID)
+{
+}
+
+IMG_VOID SysSGXCommandPending(IMG_BOOL bSGXIdle)
+{
+	PVR_UNREFERENCED_PARAMETER(bSGXIdle);
+}

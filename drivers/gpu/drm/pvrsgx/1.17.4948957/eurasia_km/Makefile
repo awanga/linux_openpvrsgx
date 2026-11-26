@@ -250,7 +250,11 @@ ccflags-y += -DPVR_LINUX_USING_WORKQUEUES
 ccflags-y += -DSUPPORT_DRI_DRM
 ccflags-y += -DPVR_DRI_DRM_PLATFORM_DEV
 ccflags-y += -DPVRSRV_NEED_PVR_DPF
-ccflags-y += -DMODULE	# this disables some code in AcquireGPTimer in sysutils_linux.c
+# this disables some code in AcquireGPTimer in sysutils_linux.c; it must not be
+# set when the driver is linked into the kernel (THIS_MODULE would not resolve)
+ifeq ($(TARGET_TYPE),m)
+ccflags-y += -DMODULE
+endif
 ccflags-y += -DSUPPORT_DMABUF
 
 # these must not be set or we can't compile successfully for omap
