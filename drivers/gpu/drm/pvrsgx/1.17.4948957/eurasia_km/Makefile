@@ -80,7 +80,7 @@ else ifeq ($(SOC_FAMILY),sunxi)
 $(TARGET) += \
 	services4/system/$(SOC_FAMILY)/sysconfig.o \
 	services4/system/$(SOC_FAMILY)/sysutils_linux.o
-else ifeq ($(SOC_FAMILY),vita)
+else ifeq ($(SOC_FAMILY)$(SGX),vitasgx543)
 $(TARGET) += \
 	services4/system/$(SOC_FAMILY)/sysconfig.o \
 	services4/system/$(SOC_FAMILY)/sysutils_linux.o
@@ -227,7 +227,7 @@ ccflags-y += -DAMVERSION=5
 endif
 
 # four 543 cores in one cluster, behind a system cache
-ifeq ($(SOC_FAMILY),vita)
+ifeq ($(SOC_FAMILY)$(SGX),vitasgx543)
 ccflags-y += -DSGX_FEATURE_MP
 ccflags-y += -DSGX_FEATURE_MP_CORE_COUNT=4
 ccflags-y += -DSGX_FEATURE_SYSTEM_CACHE
